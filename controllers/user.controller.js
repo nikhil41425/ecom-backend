@@ -41,7 +41,7 @@ exports.register = async (req, res) => {
             `
         }
 
-        
+        eService.sendMail(opt);
         return res.status(201).send(userDoc);
 
     }
