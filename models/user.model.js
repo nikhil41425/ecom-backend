@@ -18,7 +18,7 @@ const UserSchema=new Schema({
         type:String,
         required:true,
         minLength:[5,"should be atleast 5 characters"],
-        maxLength:20
+        maxLength:300
 
     },
     email:{
@@ -36,9 +36,11 @@ const UserSchema=new Schema({
         type:String,
         required:true,
         default:"role_customer"
+    },
+    createdDate:{
+        type:Date,
+        default:Date.now
     }
 });
-
-
 
 module.exports=mongoose.model('user',UserSchema);
