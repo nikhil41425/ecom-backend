@@ -1,6 +1,7 @@
 const express=require('express');
 const dotenv=require('dotenv');
 const morgan = require('morgan');
+const nodemailer=require('nodemailer');
 
 const DB=require('../ecom-backend/utils/db.connection');
 const userRouter=require('../ecom-backend/routes/user.routes');

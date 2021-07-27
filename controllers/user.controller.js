@@ -1,27 +1,12 @@
 const userModel = require("../models/user.model");
+const eService=require('../services/emailService');
+
 const bcrypt = require("bcryptjs");
 
-// exports.register=(req,res)=>{
-//     // var user=req.body;
-//  var user={
-//      username:req.body.username,
-//      password:bcrypt.hashSync(req.body.password),
-//      email:req.body.email
-//  }
+const { options } = require("../routes/user.routes");
 
-//     console.log(user);
 
-//     var userDoc=new userModel(user);
 
-//     userDoc.save(function(err,doc){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             console.log(doc);
-//         }
-//     });
-// }
 
 exports.register = async (req, res) => {
   // var user=req.body;
@@ -40,7 +25,27 @@ exports.register = async (req, res) => {
 
     if (!userDoc) {
       return res.status(404).send("registration failed");
-    } else return res.status(201).send(userDoc);
+    }
+     else 
+    {
+        let opt={
+            to:req.body.email,
+            subject:"Registration Successful",
+            text:'',
+            html:`
+
+            Hello ${req.body.username},
+
+            thanks for registering
+            
+            `
+        }
+
+        
+        return res.status(201).send(userDoc);
+
+    }
+   
   } catch (err) {
     return res.status(500).send({ success: false, error: err.message });
   }
